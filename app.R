@@ -45,14 +45,20 @@ server <- function(input, output) {
 }
 
 generateStory <- function(noun1, adj1, verb1, adverb1, noun2, adj2, verb2) {
-  paste0("Once upon a time, there was a ", adj1, " ", noun1, " who ",
+  cat(file = stderr(), "Generating story with inputs:\n")
+  cat(file = stderr(), sprintf("noun1: %s, adj1: %s, verb1: %s, adverb1: %s, noun2: %s, adj2: %s, verb2: %s\n",
+                               noun1, adj1, verb1, adverb1, noun2, adj2, verb2))
+  story <- paste0("Once upon a time, there was a ", adj1, " ", noun1, " who ",
          verb1, " ", adverb1, " through the enchanted forest. ",
          "Suddenly, a magical ", noun2, " appeared! ",
          "The ", noun1, " was so surprised that they immediately ",
          verb2, ". ",
          "In the end, everyone lived happily ever after in a ",
          adj2, " castle.")
-}
 
+  cat(file = stderr(), "Story generated successfully.\n")
+
+  return(story)
+}
 # Run the app
 shinyApp(ui = ui, server = server)
